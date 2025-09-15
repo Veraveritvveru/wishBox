@@ -1,34 +1,17 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import NavBar from './components/NavBar';
-// import Home from './pages/Home';
+import Layout from './components/Layout';
+import Home from './pages/Home';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <>
-        <NavBar />
-        {/* <Home /> */}
-      </>
-    ),
-  },
-  {
-    path: '/gifts-ideas',
-    element: (
-      <>
-        <NavBar />
-        {/* <Gifts/> */}
-      </>
-    ),
-  },
-  {
-    path: '/settings',
-    element: (
-      <>
-        <NavBar />
-        {/* <Settings /> */}
-      </>
-    ),
+    element: <Layout />,
+    children: [
+      { index: true, element: <Home /> },
+      // { path: 'gifts', element: <Gifts /> },
+      // { path: 'plans', element: <Plans /> },
+      // { path: 'settings', element: <Settings /> },
+    ],
   },
 ]);
 
