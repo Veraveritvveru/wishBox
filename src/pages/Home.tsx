@@ -1,4 +1,5 @@
-import WishCard from '../components/WishCard';
+// import { useState } from 'react';
+import WishList from '../components/WishList';
 
 const Home = () => {
   const wishes = [
@@ -24,14 +25,12 @@ const Home = () => {
       isPublic: false,
     },
   ];
+  // const [wishes, setWishes] = useState();
 
   return (
-    <div className="wish-list flex">
-      {' '}
-      {wishes.map((wish) => (
-        <WishCard key={wish.id} {...wish} />
-      ))}
-    </div>
+    <>
+      <WishList wishes={wishes} />
+    </>
   );
 };
 

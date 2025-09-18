@@ -1,13 +1,4 @@
-type WishCardPropsType = {
-  id: number;
-  photo: string;
-  title: string;
-  link: string;
-  category: string;
-  priority: number;
-  comment?: string;
-  isPublic: boolean;
-};
+import { WishCardPropsType } from '../types';
 
 const WishCard = (wishCardProps: WishCardPropsType) => {
   return (
@@ -20,7 +11,7 @@ const WishCard = (wishCardProps: WishCardPropsType) => {
         />
       </div>
 
-      <h3 className="wish-title">{wishCardProps.title}</h3>
+      <h3 className="wish-title font-bold">{wishCardProps.title}</h3>
       <a
         href={wishCardProps.link}
         className="wish-link"

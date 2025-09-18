@@ -1,0 +1,14 @@
+export type WishCardPropsType = {
+  id: number;
+  photo: string;
+  title: string;
+  link: string;
+  category: string;
+  priority: number;
+  comment?: string;
+  isPublic: boolean;
+};
+
+export type WishListProps = {
+  wishes: WishCardPropsType[];
+};

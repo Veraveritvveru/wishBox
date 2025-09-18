@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <nav>
+    <nav className="w-56 bg-gray-200 p-4">
       <ul className="flex flex-col">
         <li>
           <Link to="/">Мои хотелки</Link>
