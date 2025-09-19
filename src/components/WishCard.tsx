@@ -14,7 +14,7 @@ const WishCard = (wishCardProps: WishCardPropsType) => {
       <h3 className="wish-title font-bold">{wishCardProps.title}</h3>
       <a
         href={wishCardProps.link}
-        className="wish-link"
+        className="text-blue-700 font-medium"
         target="_blank"
         rel="noreferrer"
       >

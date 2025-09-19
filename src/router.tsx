@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
-import AddWish from './pages/AddWish';
+// import AddWish from './pages/AddWish';
 
 const router = createBrowserRouter([
   {
@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
-      { path: 'addWish', element: <AddWish /> },
+      // { path: 'addWish', element: <AddWish /> },
       // { path: 'gifts', element: <Gifts /> },
       // { path: 'plans', element: <Plans /> },
       // { path: 'settings', element: <Settings /> },
