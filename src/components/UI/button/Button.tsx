@@ -2,7 +2,7 @@ const Button = ({ ...props }) => {
   return (
     <button
       {...props}
-      className="border border-solid rounded-xl border-blue-600 text-blue-600 py-2 px-4 cursor-pointer
+      className="rounded-xl bg-[#DF768B] font-medium py-2 px-5 cursor-pointer
 "
     ></button>
   );

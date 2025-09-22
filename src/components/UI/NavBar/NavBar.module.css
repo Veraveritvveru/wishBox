@@ -1,0 +1,18 @@
+.link {
+  display: flex;
+  gap: 10px;
+  transition: all .5s;
+}
+
+.link:hover h3 {
+  color: #DF94A3;
+} 
+
+.link:hover .frindsSvg path {
+  fill: #DF94A3;
+}
+
+.link:hover svg path {
+  stroke: #DF94A3;
+}
+

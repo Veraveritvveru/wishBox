@@ -1,0 +1,52 @@
+.wishCard {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 272px;
+  background: linear-gradient(#a4c281, #576e3b);
+  border-radius: 16px;
+  color: #faf5ee;
+  padding: 5px 10px 25px 18px;
+}
+
+.imgWrapper {
+  width: 180px;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.image {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.optionsWrapper {
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  gap: 4px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.options:hover {
+  background-color: rgba(250, 245, 238, 53%);
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  background-color: #faf5ee;
+  border-radius: 50%;
+}

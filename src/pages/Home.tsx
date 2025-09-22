@@ -41,22 +41,29 @@ const Home = () => {
   return (
     <>
       <div className="top-row flex gap-14">
-        <h2 className="font-bold text-2xl">Мой вишлист</h2>
+        <h2 className="font-bold text-2xl text-[#31B2015]">Мой вишлист</h2>
 
         <Button
           className="border border-solid rounded-xl border-blue-600 text-blue-600 py-2 px-4"
-          onClick={() => {
-            setModal(true);
-          }}
+          // onClick={() => {
+          //   setModal(true);
+          // }}
         >
-          Добавить желание
+          Поделиться вишлистом
         </Button>
       </div>
       {/* <AddWish onAdd={handleAddWish} /> */}
       <Modal visible={modal} setVisible={setModal}>
         <AddWish onAdd={handleAddWish} visible={modal} />
       </Modal>
-      <WishList wishes={wishes} />
+      <WishList wishes={wishes}>
+        <div
+          className="w-60 h-[378] rounded-xl bg-gradient-to-b from-[#a4c281] to-[#576e3b] text-[#FFCFE4] text-9xl pt-[100px] text-center cursor-pointer"
+          onClick={() => {
+            setModal(true);
+          }}
+        ></div>
+      </WishList>
     </>
   );
 };

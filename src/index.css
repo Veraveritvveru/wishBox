@@ -1,6 +1,15 @@
 @import 'tailwindcss';
 
+body {
+  background-color: #F9F6EC;
+  background-image: url('./assets/bg.png');
+}
+
 #root {
   max-width: 1440px;
   margin: 0 auto;
+}
+
+.logo {
+  background: url('./assets/logo.svg');
 }

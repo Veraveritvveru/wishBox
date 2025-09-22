@@ -35,7 +35,7 @@ const AddWish = ({ onAdd, visible }: AddWishProps) => {
   };
 
   return (
-    <div className="pl-1.5">
+    <div className="w-272">
       <h2 className="font-bold text-2xl mb-4">Добавить желание</h2>
       <form className="flex flex-col gap-4 mb-7">
         <label className="flex flex-col gap-[4px] text-sm">

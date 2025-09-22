@@ -1,8 +1,8 @@
 const Header = () => {
   return (
-    <header className="flex w-full bg-blue-600 text-white p-4 justify-between">
-      <div className="text-2xl font-bold">🌟 WishBox</div>
-      <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+    <header className="flex w-full text-white p-4 justify-between">
+      <div className="logo text-2xl font-bold text-[#323D20]">🌟 WishBox</div>
+      <button className="px-4 py-2 bg-[#E87B90] text-[#1B2015] font-medium rounded-2xl hover:bg-[#E8A2B0] transition cursor-pointer">
         Войти
       </button>
     </header>
