@@ -3,7 +3,7 @@ import { WishListProps } from '../types';
 
 const WishList = ({ children, wishes }: WishListProps) => {
   return (
-    <div className="wish-list flex gap-3 mt-4 flex-wrap">
+    <div className="wish-list flex gap-4 mt-4 flex-wrap">
       {wishes.map((wish) => (
         <WishCard key={wish.id} {...wish} />
       ))}

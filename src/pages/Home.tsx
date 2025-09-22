@@ -58,11 +58,13 @@ const Home = () => {
       </Modal>
       <WishList wishes={wishes}>
         <div
-          className="w-60 h-[378] rounded-xl bg-gradient-to-b from-[#a4c281] to-[#576e3b] text-[#FFCFE4] text-9xl pt-[100px] text-center cursor-pointer"
+          className="w-[272px] h-[378px] rounded-xl bg-gradient-to-b from-[#a4c281] to-[#576e3b] text-[#FFCFE4] text-9xl pt-[100px] text-center cursor-pointer"
           onClick={() => {
             setModal(true);
           }}
-        ></div>
+        >
+          +
+        </div>
       </WishList>
     </>
   );
