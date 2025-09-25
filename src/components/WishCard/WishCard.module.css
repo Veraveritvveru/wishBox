@@ -50,3 +50,13 @@
   background-color: #faf5ee;
   border-radius: 50%;
 }
+
+.noPhoto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #faf5ee;
+  color: black;
+}

@@ -1,9 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { WishCardPropsType } from '../../types';
 import classes from './WishCard.module.css';
+// import OptionsMenu from './OptionsMenu/OptionsMenu';
 
 const WishCard = (wishCardProps: WishCardPropsType) => {
   const [isOptionsOpened, setIsOptionsOpened] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutsile = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node))
+        setIsOptionsOpened(false);
+    };
+    document.addEventListener('click', handleClickOutsile);
+    return () => document.removeEventListener('click', handleClickOutsile);
+  }, []);
 
   return (
     <div className={classes.wishCard}>
@@ -13,7 +24,7 @@ const WishCard = (wishCardProps: WishCardPropsType) => {
         </span>
         <h3 className="font-medium">{wishCardProps.title}</h3>
 
-        <div className={classes.optionsWrapper}>
+        <div className={classes.optionsWrapper} ref={menuRef}>
           <button
             className={classes.options}
             onClick={() => setIsOptionsOpened((prev) => !prev)}
@@ -22,9 +33,13 @@ const WishCard = (wishCardProps: WishCardPropsType) => {
             <div className={classes.dot}></div>
             <div className={classes.dot}></div>
           </button>
+          {/* {isOptionsOpened && <OptionsMenu />} */}
           {isOptionsOpened && (
             <div className="absolute top-[90%] right-[50%] flex flex-col gap-1 text-[#576E3B] font-medium bg-[#FAF5EE] rounded-2xl py-2">
-              <button className="text-xs flex gap-2 cursor-pointer hover:bg-[rgba(162,191,127,0.5)] transition-colors py-1.5 pl-3.5 pr-5">
+              <button
+                className="text-xs flex gap-2 cursor-pointer hover:bg-[rgba(162,191,127,0.5)] transition-colors py-1.5 pl-3.5 pr-5"
+                onClick={() => wishCardProps.onEdit?.(wishCardProps.id)}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="15"
@@ -96,14 +111,20 @@ const WishCard = (wishCardProps: WishCardPropsType) => {
         </div>
       </div>
       <div className="flex gap-4 items-center">
-        <div className={classes.imgWrapper}>
-          <img
-            className={classes.image}
-            src={wishCardProps.photo}
-            alt={wishCardProps.title}
-          />
-        </div>
-        {/* <p className="text-yellow-600">⭐ {wishCardProps.priority}</p> */}
+        {wishCardProps.photo ? (
+          <div className={classes.imgWrapper}>
+            <img
+              className={classes.image}
+              src={wishCardProps.photo}
+              alt={wishCardProps.title}
+            />
+          </div>
+        ) : (
+          <div className={[classes.imgWrapper, classes.noPhoto].join(' ')}>
+            Нет фото
+          </div>
+        )}
+
         <div className="flex flex-col gap-2.5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -169,28 +190,29 @@ const WishCard = (wishCardProps: WishCardPropsType) => {
       </div>
       <p className="italic">{wishCardProps.category}</p>
       <p>{wishCardProps.comment}</p>
-
-      <div className="self-end pr-2.5 pt-3">
-        <a
-          href={wishCardProps.link}
-          className=" flex items-center gap-2 text-[#E8A2B0] font-medium"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <p>Купить</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="12"
-            height="13"
-            fill="none"
+      {wishCardProps.link && (
+        <div className="self-end pr-2.5 pt-3">
+          <a
+            href={wishCardProps.link}
+            className=" flex items-center gap-2 text-[#E8A2B0] font-medium"
+            target="_blank"
+            rel="noreferrer"
           >
-            <path
-              fill="#E8A2B0"
-              d="M11.993 3.119a1 1 0 0 0-.874-1.112L2.182.94a1 1 0 0 0-.237 1.986l7.943.948-.948 7.944a1 1 0 1 0 1.986.237l1.067-8.936ZM1 10.866l.618.786 10-7.866L11 3l-.618-.786-10 7.866.618.786Z"
-            />
-          </svg>
-        </a>
-      </div>
+            <p>Купить</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="13"
+              fill="none"
+            >
+              <path
+                fill="#E8A2B0"
+                d="M11.993 3.119a1 1 0 0 0-.874-1.112L2.182.94a1 1 0 0 0-.237 1.986l7.943.948-.948 7.944a1 1 0 1 0 1.986.237l1.067-8.936ZM1 10.866l.618.786 10-7.866L11 3l-.618-.786-10 7.866.618.786Z"
+              />
+            </svg>
+          </a>
+        </div>
+      )}
     </div>
   );
 };

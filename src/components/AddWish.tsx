@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import Button from './UI/button/Button';
+import MyButton from './UI/button/MyButton';
 import { WishCardPropsType } from '../types';
 
 type AddWishProps = {
   onAdd: (wish: WishCardPropsType) => void;
+  // initialData: WishCardPropsType;
   visible: boolean;
 };
 
@@ -203,9 +204,9 @@ const AddWish = ({ onAdd, visible }: AddWishProps) => {
           Публичная
         </label>
       </form>
-      <Button onClick={handleSubmit} type="submit">
+      <MyButton onClick={handleSubmit} type="submit">
         Добавить
-      </Button>
+      </MyButton>
     </div>
   );
 };

@@ -1,0 +1,15 @@
+.wishListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.wishList {
+  display: flex;
+  gap: 25px;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+  justify-content: start;
+}

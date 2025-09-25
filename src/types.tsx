@@ -7,9 +7,10 @@ export type WishCardPropsType = {
   priority: number;
   comment?: string;
   isPublic: boolean;
+  onEdit?: (id: number) => void;
 };
 
 export type WishListProps = {
-  children: React.JSX.Element;
+  // children: React.JSX.Element;
   wishes: WishCardPropsType[];
 };
