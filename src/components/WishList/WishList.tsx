@@ -3,17 +3,28 @@ import MyButton from '../UI/button/MyButton';
 import Modal from '../UI/Modal/Modal';
 import AddWish from '../AddWish';
 import { useState } from 'react';
-import { WishCardPropsType } from '../../types';
+import { WishCardPropsType, WishListProps } from '../../types';
 import classes from './WishList.module.css';
 
-const WishList = () => {
+const WishList = ({ wishes, onAdd }: WishListProps) => {
   const [modal, setModal] = useState(false);
-  const [wishes, setWishes] = useState<WishCardPropsType[]>([]);
 
-  const handleAddWish = (wish: WishCardPropsType) => {
-    setWishes((prev) => [...prev, wish]);
+  const addWish = (wish: WishCardPropsType) => {
+    onAdd(wish);
     setModal(false);
   };
+  // const [wishes, setWishes] = useState<WishCardPropsType[]>([]);
+
+  // const handleAddWish = (wish: WishCardPropsType) => {
+  //   // setWishes((prev) => [...prev, wish]);
+  //   setWishes((prev) => {
+  //     localStorage.setItem('wishes', JSON.stringify(wish));
+  //     return [...prev, wish];
+  //   });
+  //   // localStorage.setItem('wishes', JSON.stringify(wish));
+  //   console.log(localStorage);
+  //   setModal(false);
+  // };
 
   return (
     <div className={classes.wishListContainer}>
@@ -48,7 +59,7 @@ const WishList = () => {
       </div>
 
       <Modal visible={modal} setVisible={setModal}>
-        <AddWish onAdd={handleAddWish} visible={modal} />
+        <AddWish onAdd={addWish} visible={modal} />
       </Modal>
     </div>
   );

@@ -13,4 +13,5 @@ export type WishCardPropsType = {
 export type WishListProps = {
   // children: React.JSX.Element;
   wishes: WishCardPropsType[];
+  onAdd: (wish: WishCardPropsType) => void;
 };
