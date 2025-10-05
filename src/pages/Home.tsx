@@ -3,6 +3,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 import { FC, useState } from 'react';
 import { WishCardPropsType } from '../types';
 import WishModal from '../components/WishModal';
+import ConfirmModal from '../components/ConfirmModal.tsx/ConfirmModal';
 
 const Home: FC = () => {
   const [wishes, setWishes] = useLocalStorage<WishCardPropsType[]>(
@@ -14,6 +15,12 @@ const Home: FC = () => {
   const [editingWish, setEditingWish] = useState<WishCardPropsType | null>(
     null
   );
+
+  const [confirmConfig, setConfirmConfig] = useState<{
+    message: string;
+    onConfirm: () => void;
+  } | null>(null);
+  const [confirmVisible, setConfirmVisible] = useState(false);
 
   const handleAdd = () => {
     setEditingWish(null);
@@ -27,10 +34,15 @@ const Home: FC = () => {
   };
 
   const handleDelete = (id: number | string) => {
-    setWishes((wishes: WishCardPropsType[]) =>
-      wishes.filter((wish) => wish.id !== id)
-    );
-    console.log(wishes);
+    setConfirmConfig({
+      message: 'Точно хочешь удалить это желание?',
+      onConfirm: () => {
+        setWishes((wishes: WishCardPropsType[]) =>
+          wishes.filter((wish) => wish.id !== id)
+        );
+      },
+    });
+    setConfirmVisible(true);
   };
 
   const handleSubmit = (wish: WishCardPropsType) => {
@@ -58,6 +70,18 @@ const Home: FC = () => {
         onClose={() => setModalVisible(false)}
         initialData={editingWish}
         onSubmit={handleSubmit}
+      />
+
+      <ConfirmModal
+        visible={confirmVisible}
+        message={confirmConfig?.message}
+        confirmText="Да, удалить"
+        cancelText="Нет, я передумал"
+        onConfirm={() => {
+          confirmConfig?.onConfirm();
+          setConfirmVisible(false);
+        }}
+        onCancel={() => setConfirmVisible(false)}
       />
     </div>
   );

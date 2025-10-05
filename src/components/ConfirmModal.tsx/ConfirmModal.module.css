@@ -1,0 +1,58 @@
+.confirmModal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  inset: 0;
+  z-index: 100;
+}
+
+.confirmContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  background-color: #F9F6EC;
+  border-radius: 16px;
+  width: 520px;
+  gap: 10px;
+}
+
+.confirmMessage {
+  color: #1B2015;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.confirmButtons {
+  display: flex;
+  gap: 25px;
+}
+
+.btnBordered{
+  color: #1B2015;
+  border: 1px solid #DF768B;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 6px 12px;
+}
+
+.btnBordered:hover {
+  background-color: #DF768B;
+}
+
+.btnColored{
+  background-color: #DF768B;
+  color: #FAF5EE;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 6px 12px;
+} 
+
+.btnColored:hover {
+  background-color: #E87B90;
+}

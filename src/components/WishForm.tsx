@@ -42,6 +42,7 @@ const WishForm = ({ onSubmit, initialData }: WishFormProps) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 mb-7">
+      <h2>{initialData ? 'Редактировать желание' : 'Добавить желание'}</h2>
       <label className="flex flex-col gap-[4px] text-sm">
         Название *
         <input
