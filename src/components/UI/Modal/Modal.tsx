@@ -1,7 +1,7 @@
 import classes from './Modal.module.css';
 
 type ModalProps = {
-  children: JSX.Element;
+  children: React.ReactNode;
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };

@@ -3,8 +3,8 @@ import classes from './NavBar.module.css';
 
 const NavBar = () => {
   return (
-    <nav className="bg-[#768E5A] h-full rounded-2xl text-xl py-9 pl-6 pr-7.5">
-      <ul className="flex flex-col text-[#FAF5EE] font-medium gap-4.5">
+    <nav className={classes.navBar}>
+      <ul className={classes.navBar__list}>
         <li>
           <Link to="/">
             <span className={classes.link}>

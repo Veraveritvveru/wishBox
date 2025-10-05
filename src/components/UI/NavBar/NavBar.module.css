@@ -1,18 +1,33 @@
 .link {
   display: flex;
   gap: 10px;
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .link:hover h3 {
-  color: #DF94A3;
-} 
+  color: #df94a3;
+}
 
 .link:hover .frindsSvg path {
-  fill: #DF94A3;
+  fill: #df94a3;
 }
 
 .link:hover svg path {
-  stroke: #DF94A3;
+  stroke: #df94a3;
 }
 
+.navBar {
+  font-size: 18px;
+  background-color: #768e5a;
+  height: 100%;
+  border-radius: 16px;
+  padding: 25px 28px 25px 20px;
+}
+
+.navBar__list {
+  display: flex;
+  flex-direction: column;
+  color: #FAF5EE;
+  font-weight: 500;
+  gap: 18px;
+}

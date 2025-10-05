@@ -6,10 +6,28 @@
 
 .wishList {
   display: flex;
+  flex-wrap: wrap;
   gap: 25px;
 }
 
 .reverse {
   flex-direction: row-reverse;
   justify-content: start;
+}
+
+.topRow {
+  display: flex;
+  gap: 56px;
+}
+
+.addWishButton {
+  font-size: 128px;
+  color: #ffcfe4;
+  text-align: center;
+  padding-top: 100px;
+  width: 272px;
+  height: 378px;
+  border-radius: 16px;
+  background: linear-gradient(#a4c281, #576e3b);
+  cursor: pointer;
 }

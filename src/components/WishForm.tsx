@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import MyButton from './UI/button/MyButton';
 import { WishCardPropsType } from '../types';
+import { v4 as uuidv4 } from 'uuid';
 
-type AddWishProps = {
-  onAdd: (wish: WishCardPropsType) => void;
-  // initialData: WishCardPropsType;
-  visible: boolean;
+type WishFormProps = {
+  onSubmit: (wish: WishCardPropsType) => void;
+  initialData?: WishCardPropsType;
 };
 
 const newWishFormFields = {
@@ -19,97 +19,132 @@ const newWishFormFields = {
   isPublic: false,
 };
 
-const AddWish = ({ onAdd, visible }: AddWishProps) => {
-  const [newWish, setNewWish] = useState(newWishFormFields);
+const WishForm = ({ onSubmit, initialData }: WishFormProps) => {
+  const [formData, setFormData] = useState<WishCardPropsType>(
+    initialData ?? { ...newWishFormFields, id: Date.now() }
+  );
 
   useEffect(() => {
-    if (!visible) {
-      setNewWish(newWishFormFields);
+    if (initialData) {
+      setFormData(initialData);
+    } else {
+      setFormData({ ...newWishFormFields, id: Date.now() });
     }
-  }, [visible]);
+  }, [initialData]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newWish.title.trim()) return;
-    onAdd({ ...newWish, id: Date.now() });
-    setNewWish(newWishFormFields);
+    if (!formData.title.trim()) return;
+
+    onSubmit({ ...formData, id: formData.id || uuidv4() });
+    setFormData(newWishFormFields);
   };
 
   return (
-    <div className="w-272">
-      <h2 className="font-bold text-2xl mb-4">Добавить желание</h2>
-      <form className="flex flex-col gap-4 mb-7">
-        <label className="flex flex-col gap-[4px] text-sm">
-          Название:
-          <input
-            type="text"
-            value={newWish.title}
-            onChange={(event) =>
-              setNewWish({ ...newWish, title: event.target.value })
-            }
-            placeholder="Например: наушники, букет цветов"
-            className="border rounded-md px-2 py-1.5 border-gray-500 w-full"
-          />
-        </label>
-        <label className="flex flex-col gap-[4px] text-sm">
-          Ссылка:
-          <input
-            type="text"
-            value={newWish.link}
-            onChange={(event) =>
-              setNewWish({ ...newWish, link: event.target.value })
-            }
-            placeholder="Например: https://ozon.ru/product/gift"
-            className="border rounded-md px-2 py-1.5 border-gray-500 w-full"
-          />
-        </label>
-        <label className="flex flex-col gap-[4px] text-sm">
-          Фото:
-          <input
-            type="text"
-            value={newWish.photo}
-            onChange={(event) =>
-              setNewWish({ ...newWish, photo: event.target.value })
-            }
-            placeholder="Ссылка на изображение"
-            className="border rounded-md px-2 py-1.5 border-gray-500 w-full"
-          />
-        </label>
-        <label className="flex flex-col gap-[4px] text-sm">
-          Категория:
-          <input
-            type="text"
-            value={newWish.category}
-            onChange={(event) =>
-              setNewWish({ ...newWish, category: event.target.value })
-            }
-            placeholder="Ссылка на изображение"
-            className="border rounded-md px-2 py-1.5 border-gray-500 w-full"
-          />
-        </label>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 mb-7">
+      <label className="flex flex-col gap-[4px] text-sm">
+        Название *
+        <input
+          required
+          type="text"
+          value={formData.title}
+          onChange={(event) =>
+            setFormData({ ...formData, title: event.target.value })
+          }
+          placeholder="Например: наушники, букет цветов"
+          className="border rounded-md px-2 py-1.5 border-gray-500 w-full"
+        />
+      </label>
+      <label className="flex flex-col gap-[4px] text-sm">
+        Ссылка
+        <input
+          type="URL"
+          value={formData.link}
+          onChange={(event) =>
+            setFormData({ ...formData, link: event.target.value })
+          }
+          placeholder="Например: https://ozon.ru/product/gift"
+          className="border rounded-md px-2 py-1.5 border-gray-500 w-full"
+        />
+      </label>
+      <label className="flex flex-col gap-[4px] text-sm">
+        Фото
+        <input
+          type="text"
+          value={formData.photo}
+          onChange={(event) =>
+            setFormData({ ...formData, photo: event.target.value })
+          }
+          placeholder="Ссылка на изображение"
+          className="border rounded-md px-2 py-1.5 border-gray-500 w-full"
+        />
+      </label>
+      <label className="flex flex-col gap-[4px] text-sm">
+        Категория
+        <input
+          type="text"
+          value={formData.category}
+          onChange={(event) =>
+            setFormData({ ...formData, category: event.target.value })
+          }
+          placeholder="Ссылка на изображение"
+          className="border rounded-md px-2 py-1.5 border-gray-500 w-full"
+        />
+      </label>
 
-        <div className="flex items-center gap-2">
-          <label>Приоритет:</label>
-          <input
-            type="number"
-            min="1"
-            max="5"
-            className="w-16 border p-1 rounded"
-            value={newWish.priority}
-            onChange={(e) =>
-              setNewWish({ ...newWish, priority: +e.target.value })
-            }
-          />
-        </div>
+      <div className="flex items-center gap-2">
+        <label>Приоритет</label>
+        <input
+          type="number"
+          min="1"
+          max="5"
+          className="w-16 border p-1 rounded"
+          value={formData.priority}
+          onChange={(e) =>
+            setFormData({ ...formData, priority: +e.target.value })
+          }
+        />
+      </div>
 
-        {/* <label className="flex flex-col gap-[4px] text-sm">
-          Приоритет: */}
-        {/* <input
+      <label className="flex flex-col gap-[4px] text-sm">
+        Комментарий
+        <textarea
+          value={formData.comment}
+          onChange={(event) =>
+            setFormData({ ...formData, comment: event.target.value })
+          }
+          placeholder="Детали или какие-то другие особенности"
+          className="border rounded-md px-2 pt-1.5 pb-13 border-gray-500 w-full"
+        />
+      </label>
+      <label className="flex flex-col gap-[4px] text-sm">
+        <input
+          type="checkbox"
+          value={formData.comment}
+          onChange={(event) =>
+            setFormData({ ...formData, isPublic: event.target.checked })
+          }
+        />
+        Публичная
+      </label>
+
+      <MyButton type="submit">
+        {initialData ? 'Сохранить' : 'Добавить'}
+      </MyButton>
+    </form>
+  );
+};
+
+export default WishForm;
+
+/* <label className="flex flex-col gap-[4px] text-sm">
+          Приоритет: */
+/* <input
             type="text"
             placeholder="Ссылка на изображение"
             className="w-3/5 border rounded-md px-2 py-1.5 border-gray-500"
-          /> */}
-        {/* <div className="stars flex gap-2">
+          /> */
+/* <div className="stars flex gap-2">
             <svg
               cursor={'pointer'}
               width="28"
@@ -181,34 +216,4 @@ const AddWish = ({ onAdd, visible }: AddWishProps) => {
               />
             </svg>
           </div>
-        </label> */}
-        <label className="flex flex-col gap-[4px] text-sm">
-          Комментарий:
-          <textarea
-            value={newWish.comment}
-            onChange={(event) =>
-              setNewWish({ ...newWish, comment: event.target.value })
-            }
-            placeholder="Детали или какие-то другие особенности"
-            className="border rounded-md px-2 pt-1.5 pb-13 border-gray-500 w-full"
-          />
-        </label>
-        <label className="flex flex-col gap-[4px] text-sm">
-          <input
-            type="checkbox"
-            value={newWish.comment}
-            onChange={(event) =>
-              setNewWish({ ...newWish, isPublic: event.target.checked })
-            }
-          />
-          Публичная
-        </label>
-      </form>
-      <MyButton onClick={handleSubmit} type="submit">
-        Добавить
-      </MyButton>
-    </div>
-  );
-};
-
-export default AddWish;
+        </label> */

@@ -1,4 +1,6 @@
-const Header = () => {
+import { FC } from "react";
+
+const Header: FC = () => {
   return (
     <header className="flex w-full text-white p-4 justify-between">
       <div className="logo text-2xl font-bold text-[#323D20]">🌟 WishBox</div>

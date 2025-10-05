@@ -1,5 +1,5 @@
 export type WishCardPropsType = {
-  id: number;
+  id: number | string;
   photo: string;
   title: string;
   link: string;
@@ -7,11 +7,13 @@ export type WishCardPropsType = {
   priority: number;
   comment?: string;
   isPublic: boolean;
-  onEdit?: (id: number) => void;
+  onEdit?: (id: number | string) => void;
+  onDelete?: (id: number | string) => void;
 };
 
 export type WishListProps = {
-  // children: React.JSX.Element;
   wishes: WishCardPropsType[];
-  onAdd: (wish: WishCardPropsType) => void;
+  onAdd: (event: React.MouseEvent) => void;
+  onEdit?: (id: number | string) => void;
+  onDelete?: (id: number | string) => void;
 };

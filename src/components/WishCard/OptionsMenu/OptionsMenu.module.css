@@ -1,0 +1,26 @@
+.optionsMenu {
+  position: absolute;
+  top: 90%;
+  right: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #576e3b;
+  font-weight: 500;
+  background-color: #faf5ee;
+  border-radius: 16px;
+  padding-block: 8px;
+}
+
+.optionsBtn {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.3ms;
+  padding: 6px 20px 6px 14px;
+}
+
+.optionsBtn:hover {
+  background-color: rgba(162, 191, 127, 0.5);
+}

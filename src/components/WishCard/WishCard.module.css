@@ -3,10 +3,19 @@
   flex-direction: column;
   gap: 7px;
   width: 272px;
+  height: 378px;
   background: linear-gradient(#a4c281, #576e3b);
   border-radius: 16px;
   color: #faf5ee;
   padding: 5px 10px 25px 18px;
+}
+
+.wishCardTitle {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 56px;
 }
 
 .imgWrapper {
@@ -60,3 +69,4 @@
   background-color: #faf5ee;
   color: black;
 }
+
