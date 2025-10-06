@@ -1,4 +1,5 @@
 import classes from './ConfirmModal.module.css';
+import { FC } from 'react';
 
 type ConfirmModalProps = {
   visible: boolean;
@@ -9,14 +10,14 @@ type ConfirmModalProps = {
   onCancel: () => void;
 };
 
-const ConfirmModal = ({
+const ConfirmModal: FC<ConfirmModalProps> = ({
   visible,
   message,
   confirmText = 'OK',
   cancelText = 'Отмена',
   onConfirm,
   onCancel,
-}: ConfirmModalProps) => {
+}) => {
   if (!visible) return null;
 
   return (

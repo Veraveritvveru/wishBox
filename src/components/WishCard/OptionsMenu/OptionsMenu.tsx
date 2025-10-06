@@ -1,15 +1,30 @@
 import classes from './OptionsMenu.module.css';
+import { FC } from 'react';
 
 type OptionsMenuProps = {
   id: number | string;
   onEdit?: (id: number | string) => void;
+  onCopy?: (id: number | string) => void;
   onDelete?: (id: number | string) => void;
+  onClose: () => void;
 };
 
-const OptionsMenu = ({ id, onEdit, onDelete }: OptionsMenuProps) => {
+const OptionsMenu: FC<OptionsMenuProps> = ({
+  id,
+  onEdit,
+  onCopy,
+  onDelete,
+  onClose,
+}: OptionsMenuProps) => {
   return (
     <div className={classes.optionsMenu}>
-      <button className={classes.optionsBtn} onClick={() => onEdit?.(id)}>
+      <button
+        className={classes.optionsBtn}
+        onClick={() => {
+          onEdit?.(id);
+          onClose();
+        }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="15"
@@ -26,7 +41,13 @@ const OptionsMenu = ({ id, onEdit, onDelete }: OptionsMenuProps) => {
         </svg>
         <p>Редактировать</p>
       </button>
-      <button className="text-xs flex gap-2 cursor-pointer hover:bg-[rgba(162,191,127,0.5)] transition-colors py-1.5 pl-3.5 pr-5">
+      <button
+        className={classes.optionsBtn}
+        onClick={() => {
+          onCopy?.(id);
+          onClose();
+        }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="15"
@@ -60,7 +81,10 @@ const OptionsMenu = ({ id, onEdit, onDelete }: OptionsMenuProps) => {
       </button>
       <button
         className="text-xs flex gap-2 cursor-pointer hover:bg-[rgba(162,191,127,0.5)] transition-colors py-1.5 pl-3.5 pr-5"
-        onClick={() => onDelete?.(id)}
+        onClick={() => {
+          onDelete?.(id);
+          onClose();
+        }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

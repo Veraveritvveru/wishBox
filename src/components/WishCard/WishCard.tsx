@@ -37,7 +37,9 @@ const WishCard = (wishCardProps: WishCardPropsType) => {
             <OptionsMenu
               id={wishCardProps.id}
               onEdit={wishCardProps.onEdit}
+              onCopy={wishCardProps.onCopy}
               onDelete={wishCardProps.onDelete}
+              onClose={() => setIsOptionsOpened(false)}
             />
           )}
         </div>

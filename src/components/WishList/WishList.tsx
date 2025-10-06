@@ -3,7 +3,13 @@ import MyButton from '../UI/button/MyButton';
 import { WishListProps } from '../../types';
 import classes from './WishList.module.css';
 
-const WishList = ({ wishes, onEdit, onAdd, onDelete }: WishListProps) => {
+const WishList = ({
+  wishes,
+  onEdit,
+  onAdd,
+  onCopy,
+  onDelete,
+}: WishListProps) => {
   return (
     <div className={classes.wishListContainer}>
       <div className={classes.topRow}>
@@ -27,6 +33,7 @@ const WishList = ({ wishes, onEdit, onAdd, onDelete }: WishListProps) => {
               key={wish.id}
               {...wish}
               onEdit={onEdit}
+              onCopy={onCopy}
               onDelete={onDelete}
             />
           ))

@@ -80,7 +80,7 @@ const WishForm = ({ onSubmit, initialData }: WishFormProps) => {
           className="border rounded-md px-2 py-1.5 border-gray-500 w-full"
         />
       </label>
-      <label className="flex flex-col gap-[4px] text-sm">
+      {/* <label className="flex flex-col gap-[4px] text-sm">
         Категория
         <input
           type="text"
@@ -91,7 +91,7 @@ const WishForm = ({ onSubmit, initialData }: WishFormProps) => {
           placeholder="Ссылка на изображение"
           className="border rounded-md px-2 py-1.5 border-gray-500 w-full"
         />
-      </label>
+      </label> */}
 
       <div className="flex items-center gap-2">
         <label>Приоритет</label>

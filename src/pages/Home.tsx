@@ -4,6 +4,7 @@ import { FC, useState } from 'react';
 import { WishCardPropsType } from '../types';
 import WishModal from '../components/WishModal';
 import ConfirmModal from '../components/ConfirmModal.tsx/ConfirmModal';
+import { v4 as uuidv4 } from 'uuid';
 
 const Home: FC = () => {
   const [wishes, setWishes] = useLocalStorage<WishCardPropsType[]>(
@@ -31,6 +32,17 @@ const Home: FC = () => {
     const wish = wishes.find((w: WishCardPropsType) => w.id === id) || null;
     setEditingWish(wish);
     setModalVisible(true);
+  };
+
+  const handleCopy = (id: number | string) => {
+    const originalWish = wishes.find(
+      (wish: WishCardPropsType) => wish.id === id
+    );
+    const newWish = { ...originalWish, id: uuidv4() };
+
+    setWishes((prev: WishCardPropsType[]) => {
+      return originalWish ? [...prev, newWish] : prev;
+    });
   };
 
   const handleDelete = (id: number | string) => {
@@ -62,6 +74,7 @@ const Home: FC = () => {
         wishes={wishes}
         onEdit={handleEdit}
         onAdd={handleAdd}
+        onCopy={handleCopy}
         onDelete={handleDelete}
       />
 

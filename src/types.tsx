@@ -8,6 +8,7 @@ export type WishCardPropsType = {
   comment?: string;
   isPublic: boolean;
   onEdit?: (id: number | string) => void;
+  onCopy?: (id: number | string) => void;
   onDelete?: (id: number | string) => void;
 };
 
@@ -15,5 +16,6 @@ export type WishListProps = {
   wishes: WishCardPropsType[];
   onAdd: (event: React.MouseEvent) => void;
   onEdit?: (id: number | string) => void;
+  onCopy?: (id: number | string) => void;
   onDelete?: (id: number | string) => void;
 };
